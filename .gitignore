@@ -1,0 +1,5 @@
+data/
+trained_models/
+trained_models_pasting/
+trained_models_bagging/
+trained_models_errors/
