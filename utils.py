@@ -8,9 +8,9 @@ import torch.optim as optim
 # returns the data in the appropiate format
 # the loaders with _batch at the end are useful for training
 # the loaders with _full at the end are useful to evaluate the model
-def get_data_loaders(seed, num_timesteps_in=12, num_timesteps_out=1, train_p=0.8, 
+def get_data_loaders(num_timesteps_in=12, num_timesteps_out=1, train_p=0.8, 
                      batch_size=256, Y_train=None, Y_test=None,
-                     pasting=False, bagging=False, pct=0.66):
+                     pasting=False, bagging=False, pct=0.66, seed=0):
     loader = METRLADatasetLoader()
     adj, _, x, y, mean, std= loader.get_dataset(num_timesteps_in,
                                                 num_timesteps_out)
