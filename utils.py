@@ -76,6 +76,7 @@ def train_model(model, device, num_epochs, train_loader, test_loader,
                 adj, lr=0.0001):
     
     model = model.to(device)
+    adj = adj.to(device)
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr)
     lossi = []
