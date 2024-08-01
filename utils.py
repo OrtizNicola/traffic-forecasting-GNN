@@ -36,9 +36,9 @@ def get_data_loaders(num_timesteps_in=12, num_timesteps_out=1, train_p=0.8,
         subset_size = pct * X_train.shape[0]
 
         if pasting == True:
-            indices = torch.randperm(X_train.shape[0], generator=g)[:subset_size] # permutacion: no se repiten datos
+            indices = torch.randperm(X_train.shape[0], generator=g)[:int(subset_size)] # permutacion: no se repiten datos
         elif bagging == True:
-            indices = torch.randint(X_train.shape[0], (subset_size,)) # enteros aleatorios: puede haber repeticion
+            indices = torch.randint(X_train.shape[0], (int(subset_size),), generator=g) # enteros aleatorios: puede haber repeticion
 
         X_train = X_train[indices]
         Y_train = Y_train[indices]
@@ -52,7 +52,7 @@ def get_data_loaders(num_timesteps_in=12, num_timesteps_out=1, train_p=0.8,
     test_loader_batch = DataLoader(test_dataset, batch_size=batch_size,
                                    shuffle=False, drop_last=True)
 
-    train_loader_full = DataLoader(train_dataset, batch_size=train_size,
+    train_loader_full = DataLoader(train_dataset, batch_size=int(train_size / 4),
                                    shuffle=False, drop_last=False)
     test_loader_full = DataLoader(test_dataset, batch_size=test_size,
                                   shuffle=False, drop_last=False)
